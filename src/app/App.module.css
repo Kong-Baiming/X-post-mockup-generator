@@ -1,0 +1,184 @@
+.app {
+  min-height: 100vh;
+  color: #0f1419;
+  background: #f3f6f8;
+  font-family:
+    Inter,
+    'Noto Sans SC',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+.desktop {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebarPane {
+  position: relative;
+  z-index: 10;
+  flex: 0 0 auto;
+}
+.workspace {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow: auto;
+  background-color: #eef2f4;
+  background-image: radial-gradient(circle, #d7dfe4 1px, transparent 1.1px);
+  background-size: 20px 20px;
+}
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  height: 58px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #dce3e7;
+  background: rgb(255 255 255 / 0.9);
+  box-shadow: 0 1px 3px rgb(15 20 25 / 0.025);
+  backdrop-filter: blur(14px);
+}
+.toolbarGroup {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.toolButton {
+  height: 34px;
+  padding: 0 11px;
+  border: 1px solid #ccd6dd;
+  border-radius: 8px;
+  color: #0f1419;
+  background: #fff;
+  font:
+    600 12px/16px Inter,
+    'Noto Sans SC',
+    sans-serif;
+  cursor: pointer;
+}
+.toolButton:hover {
+  border-color: #9eacb6;
+  background: #f7f9fa;
+}
+.zoomText {
+  min-width: 46px;
+  color: #536471;
+  text-align: center;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.modeText {
+  color: #687782;
+  font-size: 12px;
+}
+.stage {
+  display: grid;
+  min-height: calc(100% - 58px);
+  place-items: start center;
+  padding: 56px 48px 96px;
+  box-sizing: border-box;
+}
+.scaleWrap {
+  filter: drop-shadow(0 14px 34px rgb(15 20 25 / 0.14));
+  transform-origin: top center;
+}
+.mobileNav {
+  display: none;
+}
+.hiddenInput {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .desktop {
+    min-height: auto;
+  }
+  .workspace {
+    height: calc(100dvh - 56px);
+  }
+  .workspace.hidden,
+  .sidebarPane.hidden {
+    display: none;
+  }
+  .sidebarPane {
+    width: 100%;
+  }
+  .stage {
+    min-height: calc(100% - 52px);
+    padding: 30px 16px 76px;
+    overflow: auto;
+    place-items: start center;
+  }
+  .toolbar {
+    height: 52px;
+    padding: 0 max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left));
+  }
+  .mobileNav {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 56px;
+    box-sizing: border-box;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top: 1px solid #dce3e7;
+    background: rgb(255 255 255 / 0.98);
+    box-shadow: 0 -3px 16px rgb(15 20 25 / 0.06);
+    backdrop-filter: blur(12px);
+  }
+  .mobileNav button {
+    position: relative;
+    border: 0;
+    color: #687782;
+    background: transparent;
+    font:
+      700 13px/20px Inter,
+      'Noto Sans SC',
+      sans-serif;
+    cursor: pointer;
+  }
+  .mobileNav button.active {
+    color: #0875b5;
+  }
+  .mobileNav button.active::after {
+    position: absolute;
+    right: 24%;
+    bottom: 6px;
+    left: 24%;
+    height: 3px;
+    border-radius: 999px;
+    content: '';
+    background: #1d9bf0;
+  }
+}
+
+@media (max-width: 520px) {
+  .toolbar {
+    padding: 0 10px;
+  }
+  .toolbarGroup {
+    gap: 5px;
+  }
+  .toolButton {
+    padding: 0 9px;
+  }
+  .modeText {
+    display: none;
+  }
+  .stage {
+    padding-top: 22px;
+  }
+}

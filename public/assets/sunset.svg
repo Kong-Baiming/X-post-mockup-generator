@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs><linearGradient id="sunsky" x2="0" y2="1"><stop stop-color="#5e5f98"/><stop offset=".54" stop-color="#f18468"/><stop offset="1" stop-color="#f6c17a"/></linearGradient><linearGradient id="sea" x2="0" y2="1"><stop stop-color="#715776"/><stop offset="1" stop-color="#132b42"/></linearGradient></defs>
+  <rect width="1200" height="505" fill="url(#sunsky)"/><rect y="505" width="1200" height="295" fill="url(#sea)"/><circle cx="745" cy="440" r="104" fill="#ffd89a"/>
+  <path d="M0 585c160-30 302 32 458-5s296-27 423 15 212 19 319-12" fill="none" stroke="#f5b185" stroke-width="13" opacity=".62"/>
+  <path d="M622 505h246l80 295H535z" fill="#ffc99a" opacity=".18"/>
+</svg>

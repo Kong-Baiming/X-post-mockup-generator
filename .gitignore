@@ -1,0 +1,27 @@
+# Ignore every root entry unless it is explicitly required to run the project
+# or to render the README correctly.
+/*
+
+# Repository metadata and README
+!/.gitignore
+!/README.md
+
+# Package installation and application entry
+!/package.json
+!/package-lock.json
+!/index.html
+
+# Build configuration required by npm run dev/build
+!/tsconfig.json
+!/tsconfig.app.json
+!/tsconfig.node.json
+!/vite.config.ts
+
+# Application source and runtime assets
+!/src/
+!/public/
+
+# README image only
+!/docs/
+/docs/*
+!/docs/editor-concept.png

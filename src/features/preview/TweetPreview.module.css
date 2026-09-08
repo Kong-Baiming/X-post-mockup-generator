@@ -1,0 +1,826 @@
+@font-face {
+  font-family: TwitterChirpUser;
+  src: url('/vendor/x/fonts/Chirp-Archive-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: TwitterChirpUser;
+  src: url('/vendor/x/fonts/Chirp-Archive-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: TwitterChirpUser;
+  src: url('/vendor/x/fonts/Chirp-Archive-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: TwitterChirpUser;
+  src: url('/vendor/x/fonts/Chirp-Archive-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: TwitterChirpUser;
+  src: url('/vendor/x/fonts/Chirp-Archive-Heavy.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: TwitterChirpUser;
+  src: url('/vendor/x/fonts/Chirp-Archive-Extended-Heavy.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
+.canvas {
+  --x-bg: #fff;
+  --x-text: #0f1419;
+  --x-muted: #536471;
+  --x-border: #eff3f4;
+  --x-media-border: #cfd9de;
+  --x-blue: #1d9bf0;
+  --x-action: #536471;
+  --x-follow-bg: #0f1419;
+  --x-follow-text: #fff;
+  --x-reply-bg: #0f1419;
+  --x-reply-text: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--x-text);
+  background: var(--x-bg);
+  border: 0 solid var(--x-border);
+  border-right-width: 1px;
+  border-left-width: 1px;
+  font-family:
+    TwitterChirpUser,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Noto Sans SC',
+    Roboto,
+    Helvetica,
+    Arial,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Noto Color Emoji',
+    sans-serif;
+}
+
+.dark {
+  --x-bg: #000;
+  --x-text: #e7e9ea;
+  --x-muted: #71767b;
+  --x-border: #2f3336;
+  --x-media-border: #2f3336;
+  --x-action: #71767b;
+  --x-follow-bg: #eff3f4;
+  --x-follow-text: #0f1419;
+  --x-reply-bg: #eff3f4;
+  --x-reply-text: #0f1419;
+}
+
+.dark .detailTweet > .authorRow .authorActions {
+  color: var(--x-text);
+}
+
+.timelineTweet {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 8px;
+  padding: 12px 16px 4px;
+  border-bottom: 1px solid var(--x-border);
+}
+
+.timelineTweet > .authorRow {
+  grid-column: 1 / -1;
+}
+
+.timelineBody {
+  grid-column: 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: -20px;
+}
+
+.timelineBodyWithMeta {
+  margin-top: 0;
+}
+
+.authorRow {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  column-gap: 8px;
+  align-items: start;
+  min-height: 40px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.compactAuthor .authorText {
+  padding-right: 6px;
+}
+
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #cfd9de;
+}
+
+.gold .avatar {
+  border-radius: 8%;
+}
+
+.authorText {
+  min-width: 0;
+}
+.nameLine {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  white-space: nowrap;
+}
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+}
+.handle {
+  overflow: hidden;
+  color: var(--x-muted);
+  text-overflow: ellipsis;
+  font-weight: 400;
+}
+.nameLine .handle {
+  margin-left: 4px;
+}
+.dot {
+  margin-left: 4px;
+  color: var(--x-muted);
+}
+.authorActions {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  gap: 8px;
+  color: var(--x-muted);
+}
+.compactAuthor .authorActions {
+  height: 20px;
+}
+.authorIcon {
+  display: grid;
+  width: auto;
+  height: 20px;
+  place-items: center;
+}
+.authorIcon > svg {
+  display: block;
+  overflow: visible;
+}
+.authorIcon .grokIcon {
+  width: 19.34px;
+  height: 18.75px;
+}
+.authorIcon .moreIcon {
+  width: 18.75px;
+  height: 18.75px;
+}
+.followButton {
+  display: flex;
+  height: 32px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: var(--x-follow-text);
+  background: var(--x-follow-bg);
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+.accountLabel,
+.automatedLabel {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  color: var(--x-muted);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.accountLabel img {
+  width: 17px;
+  height: 17px;
+  margin-right: 4px;
+}
+.automatedLabel b {
+  color: var(--x-blue);
+  font-weight: 400;
+}
+.automatedLabel svg {
+  width: 18.75px;
+  height: 18.75px;
+  margin-right: 4px;
+  color: var(--x-muted);
+}
+
+:global(.verifiedBadge) {
+  flex: 0 0 auto;
+  width: 18.75px;
+  height: 18.75px;
+  margin-left: 2px;
+}
+
+.tweetText {
+  max-width: 100%;
+  color: var(--x-text);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.timelineTextBlock {
+  min-width: 0;
+}
+.timelineTextCollapsed {
+  display: -webkit-box;
+  max-height: 100px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+.showMore {
+  display: block;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--x-blue);
+  background: transparent;
+  text-align: left;
+  font:
+    400 15px/20px TwitterChirpUser,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Noto Sans SC',
+    sans-serif;
+}
+
+.translationNotice {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  gap: 4px;
+  color: var(--x-muted);
+  font-size: 13px;
+  line-height: 16px;
+}
+.translationNotice b {
+  color: var(--x-blue);
+  font-weight: 400;
+}
+.translationNotice > svg:first-child {
+  width: 16.75px;
+  height: 16.25px;
+  margin-right: 1px;
+  color: var(--x-muted);
+}
+.translationNotice .translationInfoIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: -5px;
+  color: var(--x-muted);
+}
+
+.linkText,
+.replyingTo span {
+  color: var(--x-blue);
+}
+.mention,
+.hashtag,
+.link {
+  color: var(--x-blue);
+}
+.replyingTo {
+  color: var(--x-muted);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.mediaFrame {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--x-media-border);
+  border-radius: 16px;
+  background: #000;
+}
+
+.mediaGrid {
+  display: grid;
+  gap: 4px;
+  aspect-ratio: 16 / 9;
+}
+
+.mediaGridMultiple {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.mediaGridMultiple .mediaCell {
+  overflow: hidden;
+  border: 1px solid var(--x-media-border);
+  border-radius: 8px;
+  background: #000;
+}
+
+.mediaCount2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.mediaCount3,
+.mediaCount4 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.mediaCount3 .mediaCell:first-child {
+  grid-row: 1 / span 2;
+}
+.mediaCell {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.mediaCell img,
+.carouselItem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.videoFrame > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.mediaSingle {
+  align-self: flex-start;
+  min-height: 0;
+  max-height: 510px;
+  background: transparent;
+}
+.mediaSingle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.carousel {
+  height: auto;
+  min-height: 190px;
+  max-height: 380px;
+  border-radius: 8px;
+  border: 0;
+  background: transparent;
+}
+.carouselTrack {
+  display: flex;
+  gap: 4px;
+  height: 100%;
+  transition: none;
+}
+.carouselItem {
+  flex: 0 0 80%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--x-media-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #000;
+}
+
+.videoFrame {
+  align-self: flex-start;
+  min-height: 0;
+  max-height: 510px;
+}
+.duration {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  background: rgb(0 0 0 / 0.77);
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.quoteCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--x-media-border);
+  border-radius: 16px;
+  padding: 0;
+}
+
+.quoteAuthor {
+  display: flex;
+  min-width: 0;
+  height: 24px;
+  margin: 12px 12px 0;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+.quoteAuthor img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.quoteAuthorGold img {
+  border-radius: 8%;
+}
+.quoteAuthor strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.quoteAuthor span {
+  color: var(--x-muted);
+}
+.quoteAuthor :global(.verifiedBadge) {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+.quoteTextWrap {
+  margin: 0 12px 12px;
+}
+.quoteText {
+  margin-top: 4px;
+}
+.quoteTranslationNotice {
+  height: 16.25px;
+  margin-top: 8px;
+}
+.quoteCard .tweetText {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.quoteCompactBody {
+  display: flex;
+  height: 121px;
+  min-width: 0;
+}
+.quoteCompactBodyTranslated {
+  height: 141.25px;
+}
+.quoteCompactMediaFrame {
+  flex: 0 0 101px;
+  width: 101px;
+  height: 101px;
+  box-sizing: border-box;
+  margin: 8px 0 12px 12px;
+  overflow: hidden;
+  border: 1px solid var(--x-media-border);
+  border-radius: 16px;
+  background: #000;
+}
+.quoteCompactGrid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  gap: 2px;
+}
+.quoteCompactCount2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.quoteCompactCount3,
+.quoteCompactCount4 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.quoteCompactCount3 .quoteCompactCell:first-child {
+  grid-row: 1 / span 2;
+}
+.quoteCompactCell {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.quoteCompactCell img,
+.quoteCompactVideo > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.quoteCompactVideo {
+  position: relative;
+}
+.quoteCompactDuration {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #fff;
+  background: rgb(0 0 0 / 0.77);
+  font-size: 11px;
+  line-height: 15px;
+}
+.quoteCompactTextWrap {
+  flex: 1;
+  min-width: 0;
+  margin: 0 12px 12px;
+  overflow: hidden;
+}
+.quoteCompactText {
+  max-height: 100px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.quoteTranslationNotice + .quoteCompactText {
+  margin-top: 4px;
+}
+
+.quoteDetailMediaInset {
+  margin: 4px 12px 12px;
+}
+.quoteDetailMediaInset .mediaGrid,
+.quoteDetailMediaInset .videoFrame {
+  max-height: 357px;
+}
+.quoteDetailMediaInset .mediaSingle {
+  max-height: 357px;
+}
+.quoteDetailCarousel {
+  margin: 4px 12px 12px;
+  overflow: hidden;
+}
+.quoteDetailCarouselTrack {
+  display: flex;
+  height: 100%;
+  gap: 4px;
+}
+.quoteDetailCarouselItem {
+  flex: 0 0 var(--quote-item-width);
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--x-border);
+  border-radius: 8px;
+  background: #000;
+}
+.quoteDetailCarouselItem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.metricsBar {
+  display: flex;
+  height: 36px;
+  margin: -8px -8px 0;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--x-action);
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.primaryMetrics,
+.trailingMetrics {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.primaryMetrics {
+  flex: 1;
+  max-width: 425px;
+}
+.trailingMetrics {
+  margin-left: auto;
+}
+.primaryMetrics .metric {
+  flex: 1;
+}
+.trailingMetrics .metric,
+.shareMetric {
+  width: 34px;
+}
+.metric,
+.shareMetric {
+  display: flex;
+  min-width: 34px;
+  height: 34px;
+  align-items: center;
+  gap: 6px;
+}
+.metric svg,
+.shareMetric svg {
+  width: 18.75px;
+  height: 18.75px;
+}
+.metricActive[data-metric='likes'] {
+  color: #f91880;
+}
+.metricActive[data-metric='reposts'] {
+  color: #00ba7c;
+}
+.metricActive[data-metric='bookmarks'] {
+  color: var(--x-blue);
+}
+.shareMetric {
+  justify-content: center;
+}
+
+.expandedMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--x-border);
+  border-bottom: 1px solid var(--x-border);
+  color: var(--x-muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+.expandedMetrics b {
+  color: var(--x-text);
+}
+
+.detailHeader {
+  display: flex;
+  height: 53px;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 28px;
+  padding: 0 16px;
+  font-size: 20px;
+}
+.backControl {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  margin-left: -8px;
+  place-items: center;
+}
+.backControl svg {
+  width: 20px;
+  height: 20px;
+}
+.detailTweet {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px 0;
+}
+.detailTweet > .tweetText {
+  font-size: 17px;
+  line-height: 24px;
+}
+.detailFooter {
+  display: flex;
+  flex-direction: column;
+}
+.timeLine {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--x-muted);
+  font-size: 15px;
+  line-height: 20px;
+}
+.timeLine b {
+  color: var(--x-text);
+}
+.detailFooter .expandedMetrics,
+.detailFooter .detailMetrics {
+  margin-top: 12px;
+}
+.detailMetrics {
+  height: 48px;
+  margin: 0;
+  padding: 0 4px;
+  border-top: 1px solid var(--x-border);
+}
+.detailMetrics .primaryMetrics {
+  flex: 3;
+  max-width: none;
+}
+.detailMetrics .trailingMetrics {
+  flex: 2;
+  margin-left: 0;
+}
+.detailMetrics .metric svg,
+.detailMetrics .shareMetric svg {
+  width: 22.5px;
+  height: 22.5px;
+}
+.detailMetrics .metric {
+  flex: 1;
+}
+.detailMetrics .trailingMetrics .metric,
+.detailMetrics .shareMetric {
+  width: auto;
+}
+.detailMetrics .metric span {
+  font-size: 13px;
+}
+.quoteLink {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--x-border);
+  color: var(--x-muted);
+  font-size: 15px;
+  line-height: 20px;
+}
+.detailFooter:not(.detailFooterWithMetrics) .quoteLink {
+  margin-top: 12px;
+}
+.quoteLink > span {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.quoteLink svg {
+  width: 13px;
+  height: 13px;
+}
+
+.replyComposer {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 84px;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--x-border);
+  color: var(--x-muted);
+  font-size: 20px;
+  line-height: 24px;
+}
+.replyPlaceholder {
+  font-size: 20px;
+  line-height: 24px;
+}
+.replyComposer img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.replyComposer button {
+  height: 36px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--x-reply-text);
+  background: var(--x-reply-bg);
+  opacity: 0.5;
+  font:
+    700 15px TwitterChirpUser,
+    sans-serif;
+}
+.detailReply {
+  border-top: 0;
+}
+
+.mockupMark {
+  padding: 9px 16px 10px;
+  text-align: center;
+  color: var(--x-muted);
+  border-top: 0;
+  font:
+    500 10px/14px Arial,
+    sans-serif;
+  letter-spacing: 0.13em;
+}
